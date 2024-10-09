@@ -1,7 +1,7 @@
 import logo from "./assets/logo.png";
 import "./App.css";
 import React, { useState } from "react";
-import TravelList from "./assets/components/TravelList";
+import TravelList from "./components/TravelList";
 
 function App() {
   return (

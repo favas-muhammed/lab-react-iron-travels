@@ -1,24 +1,30 @@
 import React, { useState } from "react";
-import travelPlansData from "./travel-plans.json";
-import TravelList from "./assets/components/TravelList";
+import travelPlansData from "../assets/travel-plans.json";
 
 const TravelList = () => {
-  const [travelPlans, setTravelPlans] = useState(travelPlansData);
-
   const handleDelete = (id) => {
     setTravelPlans(travelPlans.filter((plan) => plan.id !== id));
   };
+  const [travelPlans, setTravelPlans] = useState(travelPlansData);
+  return travelPlans.map((plan) => (
+    <div key={plan.id}>
+      <img src={plan.image} alt={plan.destination} />
 
-  return (
-    <div>
-      <h1>Travel Plans</h1>
-      <ul>
-        {travelPlansData.map((plan) => (
-          <TravelPlanCard key={plan.id} plan={plan} onDelete={handleDelete} />
-        ))}
-      </ul>
+      <div>
+        <h2>
+          {plan.destination}({plan.days} days)
+        </h2>
+        <p>{plan.description}</p>
+        <p>price: {plan.totalCost}</p>
+        {plan.totalCost < 350 && <p>Great deal</p>}
+        {plan.totalCost < 1500 && <p>Premium</p>}
+        {plan.allInclusive && <p>All Inclusive</p>}
+        <button type="button" onclick={() => handleDelete(plan.id)}>
+          Delete
+        </button>
+      </div>
     </div>
-  );
+  ));
 };
 
 export default TravelList;
