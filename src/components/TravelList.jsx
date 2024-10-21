@@ -17,9 +17,9 @@ const TravelList = () => {
         <p>{plan.description}</p>
         <p>price: {plan.totalCost}</p>
         {plan.totalCost < 350 && <p>Great deal</p>}
-        {plan.totalCost < 1500 && <p>Premium</p>}
+        {plan.totalCost >= 1500 && <p>Premium</p>}
         {plan.allInclusive && <p>All Inclusive</p>}
-        <button type="button" onclick={() => handleDelete(plan.id)}>
+        <button type="button" onClick={() => handleDelete(plan.id)}>
           Delete
         </button>
       </div>
